@@ -1,48 +1,42 @@
 package br.com.alura
 
 fun main() {
-    val banco = BancoDeNomes()
-    val nomesSalvos: Collection<String> = banco.nomes
-//    banco.nomes.add("Alex")
-
-    println("Nomes salvos: $nomesSalvos")
-
-    banco.salva("Amanda")
-    println("Nomes salvos: $nomesSalvos")
-
-    println(BancoDeNomes().nomes)
-
-    BancoDeNomes().salva("Camila")
-    println("Nomes salvos: $nomesSalvos")
-    println(BancoDeNomes().nomes)
-
-
-}
-
-class BancoDeNomes {
-    val nomes : Collection<String> get() = Companion.dados.toList()
-
-    fun salva(nome:String){
-        Companion.dados.add(nome)
-    }
-
-    companion object {
-        private val dados = mutableListOf<String>()
-    }
-}
-
-fun testaColecao() {
-    val nomes: Collection<String> = mutableListOf(
+    val assistiramCursoAndroid: MutableSet<String> = mutableSetOf(
         "Alex",
         "Fran",
         "Gui",
-        "Maria",
-        "Ana"
+        "Maria"
     )
 
-    for (nome: String in nomes) {
-        println(nome)
-    }
-    println("Tem o nome Alex? ${nomes.contains("Alex")}")
-    println("Tamanho da coleção: ${nomes.size}")
+    val assistiramCursoKotlin: MutableSet<String> = mutableSetOf(
+        "Alex",
+        "Paulo",
+        "Maria")
+
+    //val assistiramAmbos: Set<String> = assistiramCursoAndroid.plus(assistiramCursoKotlin)
+
+    val assistiramAmbos = mutableSetOf<String>()
+    assistiramAmbos.addAll(assistiramCursoAndroid)
+    assistiramAmbos.addAll(assistiramCursoKotlin)
+    assistiramAmbos.add("Ana")
+    assistiramAmbos.add("Ana")
+    println("Assistiram ambos: ${assistiramAmbos.distinct()}")
+
+    //println(assistiramAmbos[0])
+
+    println(assistiramCursoKotlin + assistiramCursoAndroid)
+    println(assistiramCursoKotlin.plus(assistiramCursoAndroid))
+    println(assistiramCursoKotlin union assistiramCursoAndroid)
+
+    println(assistiramCursoAndroid - assistiramCursoKotlin)
+    println(assistiramCursoAndroid subtract assistiramCursoKotlin)
+
+    println(assistiramCursoKotlin intersect assistiramCursoAndroid)
+
+    val assistiramList : MutableList<String> = assistiramAmbos.toMutableList()
+    assistiramList.add("Alex")
+    println(assistiramList)
+
+    println(assistiramList.toSet())
 }
+
