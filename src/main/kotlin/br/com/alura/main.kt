@@ -1,42 +1,48 @@
 package br.com.alura
 
+import br.com.alura.test.testaSet
+
 fun main() {
-    val assistiramCursoAndroid: MutableSet<String> = mutableSetOf(
-        "Alex",
-        "Fran",
-        "Gui",
-        "Maria"
+    val pedidos: MutableMap<Int, Double> = mutableMapOf<Int, Double>(
+        Pair(1, 20.0),
+        Pair(2, 34.0),
+        3 to 50.0
     )
+    println(pedidos)
 
-    val assistiramCursoKotlin: MutableSet<String> = mutableSetOf(
-        "Alex",
-        "Paulo",
-        "Maria")
+    val pedido: Double? = pedidos[4]
 
-    //val assistiramAmbos: Set<String> = assistiramCursoAndroid.plus(assistiramCursoKotlin)
+    pedido?.let{
+        println("pedido $it")
+    }
 
-    val assistiramAmbos = mutableSetOf<String>()
-    assistiramAmbos.addAll(assistiramCursoAndroid)
-    assistiramAmbos.addAll(assistiramCursoKotlin)
-    assistiramAmbos.add("Ana")
-    assistiramAmbos.add("Ana")
-    println("Assistiram ambos: ${assistiramAmbos.distinct()}")
+    for (p: Map.Entry<Int, Double> in pedidos){
+        println("Numero do pedido: ${p.key}")
+        println("Valor do pedido: ${p.value}")
+    }
 
-    //println(assistiramAmbos[0])
+    pedidos[4] = 70.0
+    println(pedidos)
 
-    println(assistiramCursoKotlin + assistiramCursoAndroid)
-    println(assistiramCursoKotlin.plus(assistiramCursoAndroid))
-    println(assistiramCursoKotlin union assistiramCursoAndroid)
+    pedidos.put(5, 80.0)
+    println(pedidos)
 
-    println(assistiramCursoAndroid - assistiramCursoKotlin)
-    println(assistiramCursoAndroid subtract assistiramCursoKotlin)
+    pedidos[1] = 100.0
+    println(pedidos)
 
-    println(assistiramCursoKotlin intersect assistiramCursoAndroid)
+    pedidos.putIfAbsent(6, 200.0)
+    println(pedidos)
 
-    val assistiramList : MutableList<String> = assistiramAmbos.toMutableList()
-    assistiramList.add("Alex")
-    println(assistiramList)
+    pedidos.putIfAbsent(6, 300.0)
+    println(pedidos)
 
-    println(assistiramList.toSet())
+    pedidos.remove(6)
+    println(pedidos)
+    pedidos.remove(3, 50.0)
+    println(pedidos)
+
+
+
 }
+
 
